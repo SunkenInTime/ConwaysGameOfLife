@@ -16,7 +16,7 @@ public class Cell {
     public int getCol() {
         return col;
     }
-    public boolean getState(){
+    public boolean getIsAlive(){
         return isAlive;
     }
 
