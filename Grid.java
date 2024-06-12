@@ -1,13 +1,35 @@
+import java.util.Random;
 
 public class Grid {
     
     Cell[][] grid;
 
     Grid(){
-       grid   = new Cell[50][50];
+       grid = new Cell[50][50];
+       fillGrid();
     }
     Grid(int size){
       grid  = new Cell[size][size] ;
+      fillGrid();
+    }
+
+    public void fillGrid(){
+        for(int row = 0; row < grid.length; row++){
+            
+            for(int col = 0; col < grid[row].length; col ++){
+                grid[row][col] = new Cell(row, col, false);
+            }
+        }
+    }
+
+    void randomPattern(){
+        for(int row = 0; row < grid.length; row++){
+            
+            for(int col = 0; col < grid[row].length; col ++){
+                Random random = new Random();
+                grid[row][col].setState(random.nextBoolean());
+            }
+        }
     }
     int getLiveNeighbors(int row, int col) {
         int liveNeighbors = 0;
@@ -54,8 +76,8 @@ public class Grid {
     }
 
     void getNextGeneration(){
-        Cell[][] newGrid = new Cell[50][50];
-
+        Cell[][] newGrid = grid;
+        
         for(int row = 0; row < grid.length; row++){
 
             for(int col = 0; col < grid[row].length; col++){
@@ -72,6 +94,20 @@ public class Grid {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String output = "";
+        for(Cell[] row : grid){
+            for(Cell cell : row){
+                output += cell;
+            }
+            output += "\n";
+
+        }
+        return output;
+
     }
 
 
