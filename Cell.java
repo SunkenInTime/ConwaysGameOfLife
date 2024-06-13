@@ -34,9 +34,9 @@ public class Cell {
     public String toString() {
 
         if (isAlive)
-        return "\033[48;2;0;0;0m";
+        return "\033[48;2;0;0;0m  ";
 
-        return "\033[48;2;255;225;225m";
+        return "\033[48;2;255;255;255m  ";
 
 
     }

@@ -7,10 +7,13 @@ public class GameOfLife {
 
     Grid myGrid = new Grid(50);
    
-    myGrid.randomPattern();
+   //  myGrid.randomPattern();
+   myGrid.presetPattern();
+    System.out.println( myGrid.toString());
     
     while(myGrid.hasLivingCell()){
         myGrid.getNextGeneration();
+        
        System.out.println( myGrid.toString());
     }
 

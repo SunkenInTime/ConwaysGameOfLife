@@ -30,7 +30,25 @@ public class Grid {
                 grid[row][col].setState(random.nextBoolean());
             }
         }
+        
     }
+
+    void presetPattern(){
+        grid = new Cell[50][50];
+        fillGrid();
+        //starts at 80 25
+        int row = 25;
+        int col = 25;
+
+
+        grid[row][col].setState(true);
+        grid[row-1][col].setState(true);
+        grid[row-2][col-1].setState(true);
+        grid[row-3][col-2].setState(true);
+        grid[row-2][col-3].setState(true);
+        grid[row-1][col-3].setState(true);
+    }
+   
     int getLiveNeighbors(int row, int col) {
         int liveNeighbors = 0;
         int[][] directions = {
@@ -48,7 +66,7 @@ public class Grid {
             int newRow = row + direction[0];
             int newCol = col + direction[1];
     
-            if (newRow >= 0 && newRow < 50 && newCol >= 0 && newCol < 50) {
+            if (newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid.length) {
                 if (grid[newRow][newCol].getIsAlive()) {
                     liveNeighbors++;
                 }
@@ -96,6 +114,7 @@ public class Grid {
         return false;
     }
 
+   
     @Override
     public String toString() {
         String output = "";
@@ -103,9 +122,12 @@ public class Grid {
             for(Cell cell : row){
                 output += cell;
             }
+            
+            output += "\u001B[0m";
             output += "\n";
 
         }
+
         return output;
 
     }
